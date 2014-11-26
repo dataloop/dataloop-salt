@@ -31,3 +31,4 @@ dataloop-agent:
   service:
     - running
     - enable: True
+    - order: last
