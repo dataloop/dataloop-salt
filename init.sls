@@ -22,10 +22,17 @@ dataloop_install:
     - user: dataloop
     - mode: 600
 
+{# check if docker is installed, and configure permissions if it is. #}
+{% if (0 == (salt['cmd.retcode']('dpkg -l docker'))) %}
 dataloop:
   user.present:
     - groups:
       - docker
+
+/var/run/docker.sock:
+  file.managed:
+    - group: docker
+{% endif %}
 
 dataloop-agent:
   service:
