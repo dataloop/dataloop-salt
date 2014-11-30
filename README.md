@@ -7,49 +7,35 @@ I don't have a specific Debian release to check for that as well in the {% if %}
 
 For our installation, I have the following in our /etc/salt/master file:
 
-<<<<<<< HEAD
-file_roots:
-  base:
-    - /srv/salt
-
-In the - source: tag I have referenced in the file.*: sections, this is referencing path: /srv/salt/linux/dataloop/ for my particular configuration.
-
-I run a push of the dataloop agent by doing: salt 'server-name' state.sls linux.dataloop
-This will launch the init.sls file and go through the state file performing each step of the deployment.
-
-If you want to uninstall, then run: salt 'server-name' state.sls linux.dataloop.uninstall
-This will launch the uninstall.sls file, which executes the unsetup.sh script on the remote host
-=======
 ```
 file_roots:
   base:
-    - /srv/salt
-```
+      - /srv/salt
+      ```
 
-Quick breakdown:
-```
-/etc/dataloop/agent.conf:
-  file.managed:
-    - source: salt://linux/dataloop/agent.conf
-```
-**/etc/dataloop/agent.conf** -- the location where we want the file to be pushed to on the remote host.  
-**- source: salt://linux/dataloop/agent.conf** --  causes salt-master to look for an agent.conf file at /srv/salt/linux/dataloop/agent.conf as defined by the file_roots in my /etc/salt/master file
+      Quick breakdown:
+      ```
+      /etc/dataloop/agent.conf:
+        file.managed:
+            - source: salt://linux/dataloop/agent.conf
+            ```
+            **/etc/dataloop/agent.conf** -- the location where we want the file to be pushed to on the remote host.  
+            **- source: salt://linux/dataloop/agent.conf** --  causes salt-master to look for an agent.conf file at /srv/salt/linux/dataloop/agent.conf as defined by the file_roots in my /etc/salt/master file
 
-Install Agent
-=============
-```
-salt 'server-name' state.sls linux.dataloop
-```
-This will launch the init.sls file and go through the state file performing each step of the deployment.
+            Install Agent
+            =============
+            ```
+            salt 'server-name' state.sls linux.dataloop
+            ```
+            This will launch the init.sls file and go through the state file performing each step of the deployment.
 
-Uninstall Agent
-===============
+            Uninstall Agent
+            ===============
 
-```
-salt 'server-name' state.sls linux.dataloop.uninstall
-```
-This will launch the uninstall.sls file, which executes the unsetup.sh script on the remote host.
->>>>>>> 4f599646b00f8772c1ddbe480ca1ca28f811d929
+            ```
+            salt 'server-name' state.sls linux.dataloop.uninstall
+            ```
+            This will launch the uninstall.sls file, which executes the unsetup.sh script on the remote host.
 
 
 
