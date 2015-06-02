@@ -1,0 +1,11 @@
+# This fileis managed by Salt
+# Do NOT modify this file by hand.
+
+[dataloop]
+name=Dataloop Repository
+baseurl=https://download.dataloop.io/packages/stable/rpm/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=https://download.dataloop.io/pubkey.gpg
+sslverify=true
+
