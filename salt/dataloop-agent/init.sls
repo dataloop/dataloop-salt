@@ -36,7 +36,7 @@ dataloop_install:
  
 /etc/dataloop/agent.yaml:
   file.managed:
-    - source: salt://common/dataloop-agent.yaml.j2
+    - source: salt://dataloop-agent/dataloop-agent.yaml.j2
     - template: jinja
     - context:
       dataloop_api_key: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX 
@@ -48,7 +48,7 @@ dataloop-agent_init:
     {% elif grains['os_family'] == 'RedHat' %}
     - name: /etc/sysconfig/dataloop-agent
     {% endif %}
-    - source: salt://common/dataloop-agent.init.j2
+    - source: salt://dataloop-agent/dataloop-agent.init.j2
     - template: jinja
     - context:
       deregister_onstop: yes
