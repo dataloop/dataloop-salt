@@ -1,4 +1,4 @@
-{% if grains['os'] == 'Ubuntu' %}
+{% if grains['os'] == 'Ubuntu' or grains['os'] == 'Debian' %}
 
 dataloop_repo:
   pkgrepo.managed:
@@ -43,7 +43,7 @@ dataloop_install:
 
 dataloop-agent_init:
   file.managed:
-    {% if grains['os'] == 'Ubuntu' %}
+    {% if grains['os'] == 'Ubuntu' or grains['os'] == 'Debian' %}
     - name: /etc/default/dataloop-agent
     {% elif grains['os_family'] == 'RedHat' %}
     - name: /etc/sysconfig/dataloop-agent
